@@ -1,0 +1,121 @@
+.inputbox-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-family: "Roboto";
+  background-color: #5763a5;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 10px;
+  max-width: 100vw;
+  max-height: 50vh;
+  height: 50vh;
+  width: 95vw;
+}
+
+.inputdetails-container {
+  background-color: #454f84;
+  border-radius: 10px;
+  margin-left: 10px;
+  padding: 10px;
+  margin: 0px;
+}
+
+.inputbox-heading {
+  color: #f8fafc;
+  font-size: 18px;
+  font-weight: 600;
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.input-image {
+  width: 20px;
+  height: 20px;
+  border: solid 1px #64748b;
+  background-color: #f8fafc;
+  padding: 10px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  height: 40px;
+  width: 40px;
+}
+
+.input-field {
+  width: 200px;
+  height: 40px;
+  max-height: 40px;
+  font-size: 14px;
+  border: solid 1px #64748b;
+  background-color: #f8fafc;
+  padding: 10px;
+}
+.inputbox-button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 82vw;
+  margin-bottom: 20px;
+}
+
+.inputbox-button {
+  background-color: #0b69ff;
+  color: #ffffff;
+  border: transparent;
+  width: 80px;
+  height: 30px;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.image {
+  width: 30vw;
+  background-size: cover;
+}
+.image-container-large {
+  display: none;
+}
+.image-container-small {
+  width: 40vw;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .inputbox-container {
+    flex-direction: row;
+    width: 90vw;
+    justify-content: space-between;
+  }
+  .inputbox-button-container {
+    order: 1;
+    width: 34vw;
+    margin: 0px;
+  }
+  .input-container {
+    width: 30vw;
+  }
+  .image-container-small {
+    display: none;
+  }
+  .image-container-large {
+    display: block;
+    width: 30vw;
+    margin: 0px;
+  }
+  .image {
+    width: 20vw;
+  }
+  .inputdetails-container {
+    margin-left: 50px;
+  }
+}
