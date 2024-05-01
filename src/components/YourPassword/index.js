@@ -19,16 +19,16 @@ const colorRandommizer = (id) => {
 };
 
 const PasswordItem = (props) => {
-  const { website, password, username, id, onDelete, passwordmask } = props;
+  const { website, password, userName, id, onDelete, passwordmask } = props;
 
   return (
-    <li className="password-listitem">
+    <li className="password-listitem" key={id}>
       <div className={`profile ${colorRandommizer(id)}`}>
         {website ? website[0].toUpperCase() : "N/A"}
       </div>
       <div className="password-item">
         <p className="website-display">{website}</p>
-        <p className="username-display">{username}</p>
+        <p className="username-display">{userName}</p>
         {passwordmask ? (
           <p className="password-display">{password}</p>
         ) : (
@@ -44,9 +44,7 @@ const PasswordItem = (props) => {
           src="https://assets.ccbp.in/frontend/react-js/password-manager-delete-img.png"
           alt="delete"
           className="delete-button"
-          onClick={() => {
-            onDelete(id);
-          }}
+          onClick={onDelete}
         />
       </div>
     </li>
@@ -59,70 +57,28 @@ class YourPassword extends Component {
     showPassword: false,
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchInput: "",
-      showPassword: false,
-      passwordList: props.passwordList,
-    };
-  }
-
-  deletePassword = (id) => {
-    this.setState((prevState) => {
-      let { passwordList } = prevState;
-      return {
-        ...prevState,
-        passwordList: passwordList.filter((each) => each.id !== id),
-        originalPasswordList: passwordList.filter((each) => each.id !== id),
-      };
-    });
-  };
-
-  filterPasswords = (event) => {
-    const inputString = event.target.value;
-    const { passwordList, originalPasswordList } = this.state;
-    const filterString = inputString.toLowerCase();
-    let filteredpasswordList;
-
-    if (filterString === "") {
-      this.setState({ passwordList: originalPasswordList });
-    } else {
-      if (passwordList.length !== 0) {
-        filteredpasswordList = passwordList.filter((each) =>
-          each.website.toLowerCase().includes(filterString)
-        );
-        this.setState({ passwordList: filteredpasswordList });
-      } else {
-        // test failed if user first typed gg and changed to g password list is not rendered
-        filteredpasswordList = originalPasswordList.filter((each) =>
-          each.website.toLowerCase().includes(filterString)
-        );
-        this.setState({ passwordList: filteredpasswordList });
-      }
-    }
-  };
-
   showPassword = (event) => {
     this.setState((prevState) => ({
       ...prevState,
       showPassword: event.target.checked,
     }));
-    console.log(this.state);
+    // console.log(this.state);
   };
 
   render() {
-    const { passwordList, showPassword } = this.state;
+    const { showPassword } = this.state;
+    const { passwordList, onDelete, filterPasswords } = this.props;
+    console.log(passwordList); // Should log the updated array
 
     return (
       <div className="password-manager-container">
         <nav className="navbar">
-          <h1 className="yourpasswords">
-            Your Passwords
-            <span className="passwords-count">
+          <div className="password-heading-container">
+            <h1 className="yourpasswords">Your Passwords</h1>
+            <p className="passwords-count">
               {passwordList !== undefined ? " " + passwordList.length : "0"}
-            </span>{" "}
-          </h1>
+            </p>{" "}
+          </div>
           <div className="search-container">
             <img
               src="https://assets.ccbp.in/frontend/react-js/password-manager-search-img.png"
@@ -133,7 +89,7 @@ class YourPassword extends Component {
               type="search"
               placeholder="Search"
               className="search-input"
-              onChange={this.filterPasswords}
+              onChange={filterPasswords}
             ></input>
           </div>
         </nav>
@@ -144,19 +100,19 @@ class YourPassword extends Component {
               id="showPassoword"
               onChange={this.showPassword}
             />
-            <label for="#showPassoword">Show passwords</label>
+            <label htmlFor="#showPassoword">Show passwords</label>
           </div>
           <ul className="password-list">
             {passwordList && passwordList.length ? (
               passwordList.map((eachItem) => {
-                const { website, username, id, password } = eachItem;
-                // console.log(eachItem);  checking data pipeline
+                const { website, userName, id, password } = eachItem;
+                // console.log(eachItem); // checking data pipeline
                 return (
                   <PasswordItem
                     website={website}
-                    username={username}
+                    userName={userName}
                     id={id}
-                    onDelete={this.deletePassword}
+                    onDelete={() => onDelete(id)}
                     passwordmask={showPassword}
                     password={password}
                   />

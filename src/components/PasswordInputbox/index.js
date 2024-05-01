@@ -17,12 +17,13 @@ const InputBoxItem = (props) => {
 };
 
 const PasswordInputbox = (props) => {
+  const { onChange } = props;
   return (
     <div className="inputbox-container">
       <div className="image-container-small">
         <img
           src="https://assets.ccbp.in/frontend/react-js/password-manager-sm-img.png"
-          alt="password image"
+          alt="enter passwords"
           className="image"
         />
       </div>
@@ -30,25 +31,32 @@ const PasswordInputbox = (props) => {
         <h1 className="inputbox-heading">Add new Password</h1>
         <ul>
           <InputBoxItem
-            name="Website"
+            name="website"
             placeholder="Enter Website"
             imageUrl="https://assets.ccbp.in/frontend/react-js/password-manager-website-img.png"
+            alt="website"
+            onchange={onChange}
           />
           <InputBoxItem
-            name="Username"
+            name="userName"
             placeholder="Enter Username"
             imageUrl="https://assets.ccbp.in/frontend/react-js/password-manager-username-img.png"
+            alt="username"
+            onchange={onChange}
           />
           <InputBoxItem
-            name="Password"
+            name="password"
             placeholder="Enter Password"
             imageUrl="https://assets.ccbp.in/frontend/react-js/password-manager-password-img.png"
             type="password"
             alt="password"
+            onchange={onChange}
           />
         </ul>
         <div className="inputbox-button-container">
-          <button className="inputbox-button">Add</button>
+          <button className="inputbox-button" type="submit">
+            Add
+          </button>
         </div>
       </div>
       <div className="image-container-large">
