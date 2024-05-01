@@ -40,7 +40,7 @@
   background-color: #5763a5;
   padding: 10px;
   color: #fff;
-  font-family: "Roboto";
+  font-family: 'Roboto';
   border-radius: 20px;
   width: 90vw;
 }
@@ -147,6 +147,10 @@
   padding: 0px;
   margin: 0px;
   margin-bottom: 10px;
+}
+button {
+  background-color: transparent;
+  border: transparent;
 }
 .delete-button {
   height: 25px;
