@@ -1,7 +1,15 @@
 import './index.css'
 
 const InputBoxItem = (props) => {
-  const { name, placeholder, imageUrl, type = 'text', alt, onchange } = props
+  const {
+    name,
+    placeholder,
+    imageUrl,
+    type = 'text',
+    alt,
+    onchange,
+    value,
+  } = props
   return (
     <li className="input-container">
       <img src={imageUrl} alt={alt} className="input-image" />
@@ -11,13 +19,14 @@ const InputBoxItem = (props) => {
         placeholder={placeholder}
         className="input-field"
         onChange={onchange} // this function should come from class component
+        value={value}
       />
     </li>
   )
 }
 
 const PasswordInputbox = (props) => {
-  const { onChange } = props
+  const { onChange, website, userName, password } = props
   return (
     <div className="inputbox-container">
       <div className="image-container-small">
@@ -36,6 +45,7 @@ const PasswordInputbox = (props) => {
             imageUrl="https://assets.ccbp.in/frontend/react-js/password-manager-website-img.png"
             alt="website"
             onchange={onChange}
+            value={website}
           />
           <InputBoxItem
             name="userName"
@@ -43,6 +53,7 @@ const PasswordInputbox = (props) => {
             imageUrl="https://assets.ccbp.in/frontend/react-js/password-manager-username-img.png"
             alt="username"
             onchange={onChange}
+            value={userName}
           />
           <InputBoxItem
             name="password"
@@ -51,6 +62,7 @@ const PasswordInputbox = (props) => {
             type="password"
             alt="password"
             onchange={onChange}
+            value={password}
           />
         </ul>
         <div className="inputbox-button-container">

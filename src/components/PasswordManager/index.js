@@ -1,9 +1,3 @@
-/*
-need to bring class components from Your Password file to this file 
-
-need to create add password functionality for form
-*/
-
 import { Component } from 'react'
 
 import PasswordInputbox from '../PasswordInputbox'
@@ -22,16 +16,17 @@ class PasswordManager extends Component {
 
   componentDidMount() {
     // Store the original list when the component mounts
+
     const { passwordList } = this.state
-    this.setState({
-      ...this.state,
+    this.setState((prevSate) => ({
+      ...this.prevSate,
       originalPasswordList: passwordList,
-    })
+    }))
   }
 
   deletePassword = (id) => {
     this.setState((prevState) => {
-      let { passwordList } = prevState
+      const { passwordList } = prevState
       return {
         ...prevState,
         passwordList: passwordList.filter((each) => each.id !== id),
@@ -42,11 +37,12 @@ class PasswordManager extends Component {
 
   submitForm = async (event) => {
     event.preventDefault()
+    const { website, userName, password, passwordList } = this.state
     const newPassword = {
-      id: this.state.passwordList.length, // Assuming id is based on the current length
-      website: this.state.website,
-      userName: this.state.userName,
-      password: this.state.password,
+      id: passwordList.length, // Assuming id is based on the current length
+      website,
+      userName,
+      password,
     }
     // console.log(newPassword);
     // console.log(this.state);
@@ -56,14 +52,14 @@ class PasswordManager extends Component {
       userName: '',
       password: '',
     }))
-    let inputTags = [...document.getElementsByTagName('input')]
+    const inputTags = [...document.getElementsByTagName('input')]
     inputTags.forEach((element) => {
       if (
         element.name.includes('website') ||
         element.name.includes('userName') ||
         element.name.includes('password')
       ) {
-        element.value = ''
+        element.setAttribute('value', '')
       }
     })
   }
@@ -74,6 +70,7 @@ class PasswordManager extends Component {
     this.setState({
       [name]: value,
     })
+    // console.log(this.state)
   }
 
   filterPasswords = (event) => {
@@ -97,7 +94,7 @@ class PasswordManager extends Component {
           passwordList: filteredpasswordList,
         }))
       } else {
-        // test failed if user first typed gg and changed to g password list is not rendered
+        // test failed if user first typed gg and changed to g password list is not rendered now fixed
         filteredpasswordList = originalPasswordList.filter((each) =>
           each.website.toLowerCase().includes(filterString)
         )
@@ -108,7 +105,7 @@ class PasswordManager extends Component {
 
   render() {
     // console.log(this.state.passwordList); // Debugging line
-    const { passwordList } = this.state
+    const { passwordList, website, userName, password } = this.state
     return (
       <div className="main-container">
         <form onSubmit={this.submitForm} className="main-form">
@@ -117,7 +114,12 @@ class PasswordManager extends Component {
             alt="app logo"
             className="password-manager-image"
           />
-          <PasswordInputbox onChange={this.handleInputChange} />
+          <PasswordInputbox
+            onChange={this.handleInputChange}
+            website={website}
+            userName={userName}
+            password={password}
+          />
           <YourPassword
             passwordList={passwordList}
             onDelete={this.deletePassword}

@@ -1,4 +1,3 @@
-/* most of the dynadynamic rendering functionalities dhouls be migrated to passwordManager indes js file*/
 import './index.css'
 import { Component } from 'react'
 
@@ -76,7 +75,7 @@ class YourPassword extends Component {
           <div className="password-heading-container">
             <h1 className="yourpasswords">Your Passwords</h1>
             <p className="passwords-count">
-              {passwordList !== undefined ? ' ' + passwordList.length : '0'}
+              {passwordList !== undefined ? passwordList.length : '0'}
             </p>{' '}
           </div>
           <div className="search-container">
@@ -90,7 +89,7 @@ class YourPassword extends Component {
               placeholder="Search"
               className="search-input"
               onChange={filterPasswords}
-            ></input>
+            />
           </div>
         </nav>
         <div className="password-viewer">
