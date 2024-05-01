@@ -12,6 +12,7 @@
   max-height: 50vh;
   height: 50vh;
   width: 95vw;
+  overflow: auto;
 }
 
 .inputdetails-container {

@@ -1,30 +1,30 @@
 /* most of the dynadynamic rendering functionalities dhouls be migrated to passwordManager indes js file*/
-import "./index.css";
-import { Component } from "react";
+import './index.css'
+import { Component } from 'react'
 
 const colorRandommizer = (id) => {
   const colorArray = [
-    "hex0b69ff",
-    "hex94a3b8",
-    "hexb6c3ca",
-    "hex7683cb",
-    "hexf59e0b",
-    "hex10b981",
-    "hexf97316",
-    "hex14b8a6",
-    "hexb91c1c",
-  ];
+    'hex0b69ff',
+    'hex94a3b8',
+    'hexb6c3ca',
+    'hex7683cb',
+    'hexf59e0b',
+    'hex10b981',
+    'hexf97316',
+    'hex14b8a6',
+    'hexb91c1c',
+  ]
 
-  return colorArray[id % 9];
-};
+  return colorArray[id % 9]
+}
 
 const PasswordItem = (props) => {
-  const { website, password, userName, id, onDelete, passwordmask } = props;
+  const { website, password, userName, id, onDelete, passwordmask } = props
 
   return (
     <li className="password-listitem" key={id}>
       <div className={`profile ${colorRandommizer(id)}`}>
-        {website ? website[0].toUpperCase() : "N/A"}
+        {website ? website[0].toUpperCase() : 'N/A'}
       </div>
       <div className="password-item">
         <p className="website-display">{website}</p>
@@ -48,27 +48,27 @@ const PasswordItem = (props) => {
         />
       </div>
     </li>
-  );
-};
+  )
+}
 
 class YourPassword extends Component {
   state = {
-    searchInput: "",
+    searchInput: '',
     showPassword: false,
-  };
+  }
 
   showPassword = (event) => {
     this.setState((prevState) => ({
       ...prevState,
       showPassword: event.target.checked,
-    }));
+    }))
     // console.log(this.state);
-  };
+  }
 
   render() {
-    const { showPassword } = this.state;
-    const { passwordList, onDelete, filterPasswords } = this.props;
-    console.log(passwordList); // Should log the updated array
+    const { showPassword } = this.state
+    const { passwordList, onDelete, filterPasswords } = this.props
+    console.log(passwordList) // Should log the updated array
 
     return (
       <div className="password-manager-container">
@@ -76,8 +76,8 @@ class YourPassword extends Component {
           <div className="password-heading-container">
             <h1 className="yourpasswords">Your Passwords</h1>
             <p className="passwords-count">
-              {passwordList !== undefined ? " " + passwordList.length : "0"}
-            </p>{" "}
+              {passwordList !== undefined ? ' ' + passwordList.length : '0'}
+            </p>{' '}
           </div>
           <div className="search-container">
             <img
@@ -100,12 +100,12 @@ class YourPassword extends Component {
               id="showPassoword"
               onChange={this.showPassword}
             />
-            <label htmlFor="#showPassoword">Show passwords</label>
+            <label htmlFor="showPassoword">Show passwords</label>
           </div>
           <ul className="password-list">
             {passwordList && passwordList.length ? (
               passwordList.map((eachItem) => {
-                const { website, userName, id, password } = eachItem;
+                const { website, userName, id, password } = eachItem
                 // console.log(eachItem); // checking data pipeline
                 return (
                   <PasswordItem
@@ -116,7 +116,7 @@ class YourPassword extends Component {
                     passwordmask={showPassword}
                     password={password}
                   />
-                );
+                )
               })
             ) : (
               <div className="no-password-viewer">
@@ -131,8 +131,8 @@ class YourPassword extends Component {
           </ul>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default YourPassword;
+export default YourPassword

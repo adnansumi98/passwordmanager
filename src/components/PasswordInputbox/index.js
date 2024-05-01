@@ -1,7 +1,7 @@
-import "./index.css";
+import './index.css'
 
 const InputBoxItem = (props) => {
-  const { name, placeholder, imageUrl, type = "text", alt, onchange } = props;
+  const { name, placeholder, imageUrl, type = 'text', alt, onchange } = props
   return (
     <li className="input-container">
       <img src={imageUrl} alt={alt} className="input-image" />
@@ -13,11 +13,11 @@ const InputBoxItem = (props) => {
         onChange={onchange} // this function should come from class component
       />
     </li>
-  );
-};
+  )
+}
 
 const PasswordInputbox = (props) => {
-  const { onChange } = props;
+  const { onChange } = props
   return (
     <div className="inputbox-container">
       <div className="image-container-small">
@@ -67,7 +67,7 @@ const PasswordInputbox = (props) => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default PasswordInputbox;
+export default PasswordInputbox
